@@ -41,8 +41,8 @@ public class MemoryMemberRepository implements MemberRepository {
 
         String userId = cond.getUserId();
         String userName = cond.getUserName();
-        Integer maxAge = cond.getMaxAge();
-        Integer minAge = cond.getMinAge();
+        Integer maxAge = Optional.ofNullable(cond.getMaxAge()).orElse(Integer.MAX_VALUE);
+        Integer minAge = Optional.ofNullable(cond.getMinAge()).orElse(Integer.MIN_VALUE);
         String memberGrade = cond.getMemberGrade();
 
         return store.values().stream()
@@ -57,10 +57,10 @@ public class MemoryMemberRepository implements MemberRepository {
                     }
                     return member.getUserName().contains(userName);
                 }).filter(member -> {
-                    if (maxAge == null && minAge == null) {
-                        return true;
-                    }
-                    return member.getAge() <= minAge && member.getAge() >= maxAge;
+//                    if (maxAge == null && minAge == null) {
+//                        return true;
+//                    }
+                    return member.getAge() <= maxAge && member.getAge() >= minAge;
                 }).filter(member -> {
                     if (ObjectUtils.isEmpty(memberGrade)) {
                         return true;
