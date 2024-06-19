@@ -1,4 +1,4 @@
-package bind.iot_study_cafe.domain.member;
+package bind.iot_study_cafe.member.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

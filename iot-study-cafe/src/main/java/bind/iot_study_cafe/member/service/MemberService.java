@@ -1,11 +1,13 @@
-package bind.iot_study_cafe.repository.member;
+package bind.iot_study_cafe.member.service;
 
-import bind.iot_study_cafe.domain.member.Member;
+import bind.iot_study_cafe.member.domain.Member;
+import bind.iot_study_cafe.member.dto.MemberSearchCond;
+import bind.iot_study_cafe.member.dto.MemberUpdateDto;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface MemberRepository {
+public interface MemberService {
 
     Member save(Member member);
 

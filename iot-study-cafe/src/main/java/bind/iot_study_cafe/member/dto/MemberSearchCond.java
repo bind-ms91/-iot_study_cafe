@@ -1,6 +1,6 @@
-package bind.iot_study_cafe.repository.member;
+package bind.iot_study_cafe.member.dto;
 
-import bind.iot_study_cafe.domain.member.Grade;
+import bind.iot_study_cafe.member.domain.Grade;
 import lombok.Data;
 
 @Data

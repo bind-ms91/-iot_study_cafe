@@ -1,14 +1,14 @@
-package bind.iot_study_cafe.config;
+package bind.iot_study_cafe.commons.config;
 
-import bind.iot_study_cafe.repository.member.MemberRepository;
-import bind.iot_study_cafe.repository.member.memory.MemoryMemberRepository;
-import bind.iot_study_cafe.service.member.MemberService;
-import bind.iot_study_cafe.service.member.MemberServiceV1;
+import bind.iot_study_cafe.member.repository.MemberRepository;
+import bind.iot_study_cafe.member.repository.memory.MemoryMemberRepository;
+import bind.iot_study_cafe.member.service.MemberService;
+import bind.iot_study_cafe.member.service.MemberServiceV1;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class MemoryConfig {
+public class MemberConfig {
 
     @Bean
     public MemberService memberService() {
