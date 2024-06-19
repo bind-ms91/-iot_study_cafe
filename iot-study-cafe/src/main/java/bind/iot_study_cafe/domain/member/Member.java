@@ -35,7 +35,6 @@ public class Member {
     // Grade를 포함하는지 확인하는 메서드 추가
     public boolean containsGrade(Grade grade) {
         return this.grade == grade;
-         
     }
 
 }
