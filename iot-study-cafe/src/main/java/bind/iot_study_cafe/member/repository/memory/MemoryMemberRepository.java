@@ -1,6 +1,6 @@
 package bind.iot_study_cafe.member.repository.memory;
 
-import bind.iot_study_cafe.member.domain.Grade;
+import bind.iot_study_cafe.member.domain.MemberGrade;
 import bind.iot_study_cafe.member.domain.Member;
 import bind.iot_study_cafe.member.repository.MemberRepository;
 import bind.iot_study_cafe.member.dto.MemberUpdateDto;
@@ -24,8 +24,8 @@ public class MemoryMemberRepository implements MemberRepository {
     @Override
     public Member save(Member member) {
 
-        member.setSequence(++sequence);
-        store.put(member.getSequence(), member);
+        member.setId(++sequence);
+        store.put(member.getId(), member);
 
         return member;
     }
@@ -43,7 +43,7 @@ public class MemoryMemberRepository implements MemberRepository {
         String userName = cond.getUserName();
         Integer maxAge = cond.getMaxAge();
         Integer minAge = cond.getMinAge();
-        Grade grade = cond.getGrade();
+        MemberGrade memberGrade = cond.getMemberGrade();
 
         return store.values().stream()
                 .filter(member -> {
@@ -62,10 +62,10 @@ public class MemoryMemberRepository implements MemberRepository {
                     }
                     return member.getAge() <= minAge && member.getAge() >= maxAge;
                 }).filter(member -> {
-                    if (ObjectUtils.isEmpty(grade)) {
+                    if (ObjectUtils.isEmpty(memberGrade)) {
                         return true;
                     }
-                    return member.containsGrade(grade);
+                    return member.containsGrade(memberGrade);
                 })
                 .collect(Collectors.toList());
     }
@@ -74,7 +74,7 @@ public class MemoryMemberRepository implements MemberRepository {
     public void update(Long id, MemberUpdateDto updateParam) {
 
         Member findMember = findById(id).orElseThrow();
-        findMember.setGrade(updateParam.getGrade());
+        findMember.setMemberGrade(MemberGrade.valueOf(updateParam.getMemberGrade()));
         findMember.setUserPassword(updateParam.getUserPassword());
         findMember.setUserName(updateParam.getUserName());
         findMember.setAge(updateParam.getAge());

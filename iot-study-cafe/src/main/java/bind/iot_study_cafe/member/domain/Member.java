@@ -12,29 +12,29 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long sequence;
+    private Long id;
 
     @Id
     private String userId;
     private String userPassword;
     private String userName;
     private Integer age;
-    private Grade grade;
+    private MemberGrade memberGrade;
 
     public Member() {
     }
 
-    public Member(String userId, String userPassword, String userName, Integer age, Grade grade) {
+    public Member(String userId, String userPassword, String userName, Integer age, String memberGrade) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.userName = userName;
         this.age = age;
-        this.grade = grade;
+        this.memberGrade = MemberGrade.valueOf(memberGrade);
     }
 
     // Grade를 포함하는지 확인하는 메서드 추가
-    public boolean containsGrade(Grade grade) {
-        return this.grade == grade;
+    public boolean containsGrade(MemberGrade memberGrade) {
+        return this.memberGrade == memberGrade;
     }
 
 }
