@@ -10,12 +10,12 @@ public class MemberSearchCond {
     private String userName;
     private Integer maxAge;
     private Integer minAge;
-    private MemberGrade memberGrade;
+    private String memberGrade;
 
     public MemberSearchCond() {
     }
 
-    public MemberSearchCond(String userId, String userName, Integer maxAge, Integer minAge, MemberGrade memberGrade) {
+    public MemberSearchCond(String userId, String userName, Integer maxAge, Integer minAge, String memberGrade) {
         this.userId = userId;
         this.userName = userName;
         this.maxAge = maxAge;
