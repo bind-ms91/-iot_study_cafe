@@ -5,7 +5,7 @@ import bind.iot_study_cafe.member.domain.Member;
 import bind.iot_study_cafe.member.dto.MemberSearchCond;
 import bind.iot_study_cafe.member.dto.MemberUpdateDto;
 import bind.iot_study_cafe.member.repository.MemberRepositoryV1;
-import bind.iot_study_cafe.member.repository.memory.MemoryMemberRepositoryV1;
+import bind.iot_study_cafe.member.repository.memory.MemoryMemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class MemberServiceTest {
 
     @Autowired
-    MemberRepositoryV1 memberRepositoryV1;
+    MemberRepositoryV1 memberRepository;
 
     @Autowired
     MemberService memberService;
@@ -31,8 +31,8 @@ class MemberServiceTest {
     @AfterEach
     void afterEach() {
         //MemoryRepository 사용시 제한적으로 사용
-        if(memberRepositoryV1 instanceof MemoryMemberRepositoryV1) {
-            ((MemoryMemberRepositoryV1) memberRepositoryV1).clearStore();
+        if(memberRepository instanceof MemoryMemberRepository) {
+            ((MemoryMemberRepository) memberRepository).clearStore();
         }
     }
 

@@ -15,30 +15,31 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MemberServiceV1 implements MemberService {
 
-    private final MemberRepositoryV1 memberRepositoryV1;
+//    @Qualifier("memberRepository")
+    private final MemberRepositoryV1 memberRepository;
 
     @Override
     public Member save(Member member) {
-        return memberRepositoryV1.save(member);
+        return memberRepository.save(member);
     }
 
     @Override
     public Optional<Member> findById(Long id) {
-        return memberRepositoryV1.findById(id);
+        return memberRepository.findById(id);
     }
 
     @Override
     public List<Member> findAll(MemberSearchCond cond) {
-        return memberRepositoryV1.findAll(cond);
+        return memberRepository.findAll(cond);
     }
 
     @Override
     public void update(Long id, MemberUpdateDto updateParam) {
-        memberRepositoryV1.update(id, updateParam);
+        memberRepository.update(id, updateParam);
     }
 
     @Override
     public void delete(Long id) {
-        memberRepositoryV1.delete(id);
+        memberRepository.delete(id);
     }
 }
