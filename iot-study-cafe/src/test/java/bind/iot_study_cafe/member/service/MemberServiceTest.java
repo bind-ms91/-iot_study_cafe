@@ -6,6 +6,7 @@ import bind.iot_study_cafe.member.dto.MemberSearchCond;
 import bind.iot_study_cafe.member.dto.MemberUpdateDto;
 import bind.iot_study_cafe.member.repository.MemberRepositoryV1;
 import bind.iot_study_cafe.member.repository.memory.MemoryMemberRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @Slf4j
 @SpringBootTest
+//@Transactional
 class MemberServiceTest {
 
     @Autowired
@@ -46,7 +48,7 @@ class MemberServiceTest {
         memberService.save(member);
 
         //then
-        Member findMember = memberService.findById(member.getId().getSeq()).get();
+        Member findMember = memberService.findById(member.getId()).get();
 
         log.info("member: {}", member);
         log.info("findMember: {}", findMember);
@@ -60,7 +62,7 @@ class MemberServiceTest {
         //given
         Member member = new Member("ms91", "123", "조민성", 23, "OPERATOR");
         memberService.save(member);
-        Long memberId = member.getId().getSeq();
+        Long memberId = member.getId();
 
         //when
         MemberUpdateDto updateParam = new MemberUpdateDto("1234", "민성", 24, "OWNER");
@@ -125,7 +127,7 @@ class MemberServiceTest {
         //given
         Member member = new Member("ms91", "123", "조민성", 23, "OPERATOR");
         memberService.save(member);
-        Long memberId = member.getId().getSeq();
+        Long memberId = member.getId();
         Member findMember = memberService.findById(memberId).get();
         log.info("findMember: {}", findMember);
 
