@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
-public class MemoryMemberRepositoryV1 implements MemberRepositoryV1 {
+public class MemoryMemberRepository implements MemberRepositoryV1 {
 
     private static final Map<Long, Member> store = new HashMap<>(); //static
     private static long sequence = 0L; //static

@@ -7,16 +7,11 @@ import lombok.Data;
 @Entity
 public class Member {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;        //seq
 
-////    @Id
-//    private String memberId;
-
-    @EmbeddedId
-    private MemberId id;
-
+    private String memberId;
     private String memberPassword;
     private String memberName;
     private Integer age;
@@ -25,8 +20,8 @@ public class Member {
     public Member() {
     }
 
-    public Member(String id, String memberPassword, String memberName, Integer age, String memberGrade) {
-        this.id = new MemberId(id);
+    public Member(String memberId, String memberPassword, String memberName, Integer age, String memberGrade) {
+        this.memberId = memberId;
         this.memberPassword = memberPassword;
         this.memberName = memberName;
         this.age = age;
