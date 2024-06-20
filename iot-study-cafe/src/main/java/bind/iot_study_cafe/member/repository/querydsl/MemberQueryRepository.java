@@ -41,7 +41,7 @@ public class MemberQueryRepository {
 
     private BooleanExpression likeMemberId(String memberId) {
         if (StringUtils.hasText(memberId)) {
-            return member.id.like(memberId + "%");
+            return member.memberId.like( memberId + "%");
 //            return member.memberId.like("%" + memberId + "%");
         }
         return null;
