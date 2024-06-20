@@ -4,10 +4,9 @@ import bind.iot_study_cafe.member.domain.MemberGrade;
 import bind.iot_study_cafe.member.domain.Member;
 import bind.iot_study_cafe.member.dto.MemberSearchCond;
 import bind.iot_study_cafe.member.dto.MemberUpdateDto;
-import bind.iot_study_cafe.member.repository.MemberRepository;
-import bind.iot_study_cafe.member.repository.memory.MemoryMemberRepository;
+import bind.iot_study_cafe.member.repository.MemberRepositoryV1;
+import bind.iot_study_cafe.member.repository.memory.MemoryMemberRepositoryV1;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class MemberServiceTest {
 
     @Autowired
-    MemberRepository memberRepository;
+    MemberRepositoryV1 memberRepositoryV1;
 
     @Autowired
     MemberService memberService;
@@ -32,8 +31,8 @@ class MemberServiceTest {
     @AfterEach
     void afterEach() {
         //MemoryRepository 사용시 제한적으로 사용
-        if(memberRepository instanceof MemoryMemberRepository) {
-            ((MemoryMemberRepository) memberRepository).clearStore();
+        if(memberRepositoryV1 instanceof MemoryMemberRepositoryV1) {
+            ((MemoryMemberRepositoryV1) memberRepositoryV1).clearStore();
         }
     }
 
@@ -69,8 +68,8 @@ class MemberServiceTest {
 
         //then
         Member findMember = memberService.findById(memberId).get();
-        assertThat(findMember.getUserPassword()).isEqualTo(updateParam.getUserPassword());
-        assertThat(findMember.getUserName()).isEqualTo(updateParam.getUserName());
+        assertThat(findMember.getMemberPassword()).isEqualTo(updateParam.getMemberPassword());
+        assertThat(findMember.getMemberName()).isEqualTo(updateParam.getMemberName());
         assertThat(findMember.getAge()).isEqualTo(updateParam.getAge());
         assertThat(findMember.getMemberGrade()).isEqualTo(MemberGrade.valueOf(updateParam.getMemberGrade()));
         log.info("findMember: {}", findMember);

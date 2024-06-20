@@ -7,7 +7,7 @@ import bind.iot_study_cafe.member.dto.MemberUpdateDto;
 import java.util.List;
 import java.util.Optional;
 
-public interface MemberRepository {
+public interface MemberRepositoryV1 {
 
     Member save(Member member);
 

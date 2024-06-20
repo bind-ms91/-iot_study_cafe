@@ -2,7 +2,7 @@ package bind.iot_study_cafe.member.repository.memory;
 
 import bind.iot_study_cafe.member.domain.MemberGrade;
 import bind.iot_study_cafe.member.domain.Member;
-import bind.iot_study_cafe.member.repository.MemberRepository;
+import bind.iot_study_cafe.member.repository.MemberRepositoryV1;
 import bind.iot_study_cafe.member.dto.MemberUpdateDto;
 import bind.iot_study_cafe.member.dto.MemberSearchCond;
 import org.springframework.stereotype.Repository;
@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
-public class MemoryMemberRepository implements MemberRepository {
+public class MemoryMemberRepositoryV1 implements MemberRepositoryV1 {
 
     private static final Map<Long, Member> store = new HashMap<>(); //static
     private static long sequence = 0L; //static
@@ -39,8 +39,8 @@ public class MemoryMemberRepository implements MemberRepository {
     @Override
     public List<Member> findAll(MemberSearchCond cond) {
 
-        String userId = cond.getUserId();
-        String userName = cond.getUserName();
+        String userId = cond.getMemberId();
+        String userName = cond.getMemberName();
         Integer maxAge = Optional.ofNullable(cond.getMaxAge()).orElse(Integer.MAX_VALUE);
         Integer minAge = Optional.ofNullable(cond.getMinAge()).orElse(Integer.MIN_VALUE);
         String memberGrade = cond.getMemberGrade();
@@ -50,12 +50,12 @@ public class MemoryMemberRepository implements MemberRepository {
                     if (ObjectUtils.isEmpty(userId)) {
                         return true;
                     }
-                    return member.getUserId().contains(userId);
+                    return member.getMemberId().contains(userId);
                 }).filter(member -> {
                     if (ObjectUtils.isEmpty(userName)) {
                         return true;
                     }
-                    return member.getUserName().contains(userName);
+                    return member.getMemberName().contains(userName);
                 }).filter(member -> {
 //                    if (maxAge == null && minAge == null) {
 //                        return true;
@@ -75,8 +75,8 @@ public class MemoryMemberRepository implements MemberRepository {
 
         Member findMember = findById(id).orElseThrow();
         findMember.setMemberGrade(MemberGrade.valueOf(updateParam.getMemberGrade()));
-        findMember.setUserPassword(updateParam.getUserPassword());
-        findMember.setUserName(updateParam.getUserName());
+        findMember.setMemberPassword(updateParam.getMemberPassword());
+        findMember.setMemberName(updateParam.getMemberName());
         findMember.setAge(updateParam.getAge());
 
     }
