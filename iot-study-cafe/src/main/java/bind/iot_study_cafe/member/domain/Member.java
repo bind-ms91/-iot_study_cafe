@@ -1,21 +1,22 @@
 package bind.iot_study_cafe.member.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
 public class Member {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
 
-    @Id
-    private String memberId;
+////    @Id
+//    private String memberId;
+
+    @EmbeddedId
+    private MemberId id;
+
     private String memberPassword;
     private String memberName;
     private Integer age;
@@ -24,8 +25,8 @@ public class Member {
     public Member() {
     }
 
-    public Member(String memberId, String memberPassword, String memberName, Integer age, String memberGrade) {
-        this.memberId = memberId;
+    public Member(String id, String memberPassword, String memberName, Integer age, String memberGrade) {
+        this.id = new MemberId(id);
         this.memberPassword = memberPassword;
         this.memberName = memberName;
         this.age = age;

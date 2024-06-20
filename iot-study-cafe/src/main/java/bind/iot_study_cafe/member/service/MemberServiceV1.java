@@ -39,7 +39,7 @@ public class MemberServiceV1 implements MemberService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         memberRepository.delete(id);
     }
 }

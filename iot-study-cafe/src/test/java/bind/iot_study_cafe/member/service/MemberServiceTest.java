@@ -46,7 +46,7 @@ class MemberServiceTest {
         memberService.save(member);
 
         //then
-        Member findMember = memberService.findById(member.getId()).get();
+        Member findMember = memberService.findById(member.getId().getSeq()).get();
 
         log.info("member: {}", member);
         log.info("findMember: {}", findMember);
@@ -60,7 +60,7 @@ class MemberServiceTest {
         //given
         Member member = new Member("ms91", "123", "조민성", 23, "OPERATOR");
         memberService.save(member);
-        Long memberId = member.getId();
+        Long memberId = member.getId().getSeq();
 
         //when
         MemberUpdateDto updateParam = new MemberUpdateDto("1234", "민성", 24, "OWNER");
@@ -120,17 +120,17 @@ class MemberServiceTest {
     }
 
     @Test
-    void delete() {
+    void deleteById() {
 
         //given
         Member member = new Member("ms91", "123", "조민성", 23, "OPERATOR");
         memberService.save(member);
-        Long memberId = member.getId();
+        Long memberId = member.getId().getSeq();
         Member findMember = memberService.findById(memberId).get();
         log.info("findMember: {}", findMember);
 
         //when
-        memberService.delete(memberId);
+        memberService.deleteById(memberId);
 
         //then
         assertThatThrownBy(() -> memberService.findById(memberId).get())
