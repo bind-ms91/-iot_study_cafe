@@ -37,6 +37,14 @@ public class MemoryMemberRepository implements MemberRepositoryV1 {
     }
 
     @Override
+    public Optional<Member> findByMemberId(String memberId) {
+
+        return store.values().stream()
+                .filter(member -> member.getMemberId().equals(memberId))
+                .findFirst();
+    }
+
+    @Override
     public List<Member> findAll(MemberSearchCond cond) {
 
         String userId = cond.getMemberId();

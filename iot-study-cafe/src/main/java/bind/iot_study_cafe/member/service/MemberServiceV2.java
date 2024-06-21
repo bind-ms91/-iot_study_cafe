@@ -33,6 +33,11 @@ public class MemberServiceV2 implements MemberService {
     }
 
     @Override
+    public Optional<Member> findByMemberId(String memberId) {
+        return memberRepositoryV2.findByMemberId(memberId);
+    }
+
+    @Override
     public List<Member> findAll(MemberSearchCond cond) {
         return memberQueryRepository.findAll(cond);
     }

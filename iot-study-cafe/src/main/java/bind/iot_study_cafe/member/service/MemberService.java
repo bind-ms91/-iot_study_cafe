@@ -13,6 +13,8 @@ public interface MemberService {
 
     Optional<Member> findById(Long id);
 
+    Optional<Member> findByMemberId(String memberId);
+
     List<Member> findAll(MemberSearchCond cond);
 
     void update(Long id, MemberUpdateDto updateParam);

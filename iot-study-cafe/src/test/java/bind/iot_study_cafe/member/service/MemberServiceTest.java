@@ -57,6 +57,24 @@ class MemberServiceTest {
     }
 
     @Test
+    void findByMemberId() {
+
+        //given
+        Member member = new Member("ms91", "123", "조민성", 23, "OPERATOR");
+
+        //when
+        memberService.save(member);
+        Member findMember = memberService.findByMemberId(member.getMemberId()).get();
+
+        //then
+        log.info("member: {}", member);
+        log.info("findMember: {}", findMember);
+        assertThat(member).isEqualTo(findMember);
+
+
+    }
+
+    @Test
     void update() {
 
         //given
@@ -78,6 +96,9 @@ class MemberServiceTest {
         log.info("updateParam: {}", updateParam);
 
     }
+
+
+
 
     @Test
     void findMembers() {
