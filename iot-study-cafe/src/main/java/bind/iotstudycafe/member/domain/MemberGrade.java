@@ -1,4 +1,4 @@
-package bind.iot_study_cafe.member.domain;
+package bind.iotstudycafe.member.domain;
 
 public enum MemberGrade {
 

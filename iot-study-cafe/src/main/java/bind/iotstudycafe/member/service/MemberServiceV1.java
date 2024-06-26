@@ -1,11 +1,10 @@
-package bind.iot_study_cafe.member.service;
+package bind.iotstudycafe.member.service;
 
-import bind.iot_study_cafe.member.domain.Member;
-import bind.iot_study_cafe.member.repository.MemberRepositoryV1;
-import bind.iot_study_cafe.member.dto.MemberSearchCond;
-import bind.iot_study_cafe.member.dto.MemberUpdateDto;
+import bind.iotstudycafe.member.domain.Member;
+import bind.iotstudycafe.member.repository.MemberRepositoryV1;
+import bind.iotstudycafe.member.dto.MemberSearchCond;
+import bind.iotstudycafe.member.dto.MemberUpdateDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

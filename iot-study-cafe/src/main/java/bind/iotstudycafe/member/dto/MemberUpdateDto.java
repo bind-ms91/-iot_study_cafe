@@ -1,4 +1,4 @@
-package bind.iot_study_cafe.member.dto;
+package bind.iotstudycafe.member.dto;
 
 import lombok.Data;
 

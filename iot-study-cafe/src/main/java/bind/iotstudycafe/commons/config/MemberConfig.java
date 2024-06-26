@@ -1,14 +1,13 @@
-package bind.iot_study_cafe.commons.config;
+package bind.iotstudycafe.commons.config;
 
-import bind.iot_study_cafe.member.repository.MemberRepositoryV1;
-import bind.iot_study_cafe.member.repository.MemberRepositoryV2;
-import bind.iot_study_cafe.member.repository.memory.MemoryMemberRepository;
-import bind.iot_study_cafe.member.repository.querydsl.MemberQueryRepository;
-import bind.iot_study_cafe.member.service.MemberService;
-import bind.iot_study_cafe.member.service.MemberServiceV1;
-import bind.iot_study_cafe.member.service.MemberServiceV2;
+import bind.iotstudycafe.member.repository.MemberRepositoryV1;
+import bind.iotstudycafe.member.repository.MemberRepositoryV2;
+import bind.iotstudycafe.member.repository.memory.MemoryMemberRepository;
+import bind.iotstudycafe.member.repository.querydsl.MemberQueryRepository;
+import bind.iotstudycafe.member.service.MemberService;
+import bind.iotstudycafe.member.service.MemberServiceV1;
+import bind.iotstudycafe.member.service.MemberServiceV2;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

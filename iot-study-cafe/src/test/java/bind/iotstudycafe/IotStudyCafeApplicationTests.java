@@ -1,4 +1,4 @@
-package bind.iot_study_cafe;
+package bind.iotstudycafe;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

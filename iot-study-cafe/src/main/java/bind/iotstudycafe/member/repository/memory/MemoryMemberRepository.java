@@ -1,10 +1,10 @@
-package bind.iot_study_cafe.member.repository.memory;
+package bind.iotstudycafe.member.repository.memory;
 
-import bind.iot_study_cafe.member.domain.MemberGrade;
-import bind.iot_study_cafe.member.domain.Member;
-import bind.iot_study_cafe.member.repository.MemberRepositoryV1;
-import bind.iot_study_cafe.member.dto.MemberUpdateDto;
-import bind.iot_study_cafe.member.dto.MemberSearchCond;
+import bind.iotstudycafe.member.domain.MemberGrade;
+import bind.iotstudycafe.member.domain.Member;
+import bind.iotstudycafe.member.repository.MemberRepositoryV1;
+import bind.iotstudycafe.member.dto.MemberUpdateDto;
+import bind.iotstudycafe.member.dto.MemberSearchCond;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 

@@ -1,17 +1,17 @@
-package bind.iot_study_cafe.member.service;
+package bind.iotstudycafe.member.service;
 
-import bind.iot_study_cafe.member.domain.MemberGrade;
-import bind.iot_study_cafe.member.domain.Member;
-import bind.iot_study_cafe.member.dto.MemberSearchCond;
-import bind.iot_study_cafe.member.dto.MemberUpdateDto;
-import bind.iot_study_cafe.member.repository.MemberRepositoryV1;
-import bind.iot_study_cafe.member.repository.memory.MemoryMemberRepository;
-import jakarta.transaction.Transactional;
+import bind.iotstudycafe.member.domain.MemberGrade;
+import bind.iotstudycafe.member.domain.Member;
+import bind.iotstudycafe.member.dto.MemberSearchCond;
+import bind.iotstudycafe.member.dto.MemberUpdateDto;
+import bind.iotstudycafe.member.repository.MemberRepositoryV1;
+import bind.iotstudycafe.member.repository.memory.MemoryMemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @Slf4j
 @SpringBootTest
-//@Transactional
+@Transactional
 class MemberServiceTest {
 
     @Autowired

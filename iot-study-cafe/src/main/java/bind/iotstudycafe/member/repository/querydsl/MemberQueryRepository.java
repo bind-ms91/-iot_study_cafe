@@ -1,10 +1,8 @@
-package bind.iot_study_cafe.member.repository.querydsl;
+package bind.iotstudycafe.member.repository.querydsl;
 
-import bind.iot_study_cafe.member.domain.Member;
-import bind.iot_study_cafe.member.domain.MemberGrade;
-import bind.iot_study_cafe.member.domain.QMember;
-import bind.iot_study_cafe.member.dto.MemberSearchCond;
-import com.querydsl.core.types.Predicate;
+import bind.iotstudycafe.member.domain.Member;
+import bind.iotstudycafe.member.domain.MemberGrade;
+import bind.iotstudycafe.member.dto.MemberSearchCond;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
@@ -13,7 +11,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.List;
 
-import static bind.iot_study_cafe.member.domain.QMember.member;
+import static bind.iotstudycafe.member.domain.QMember.member;
 
 
 @Repository

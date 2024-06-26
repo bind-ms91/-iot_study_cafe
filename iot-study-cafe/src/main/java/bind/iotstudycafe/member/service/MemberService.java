@@ -1,13 +1,13 @@
-package bind.iot_study_cafe.member.repository;
+package bind.iotstudycafe.member.service;
 
-import bind.iot_study_cafe.member.domain.Member;
-import bind.iot_study_cafe.member.dto.MemberSearchCond;
-import bind.iot_study_cafe.member.dto.MemberUpdateDto;
+import bind.iotstudycafe.member.domain.Member;
+import bind.iotstudycafe.member.dto.MemberSearchCond;
+import bind.iotstudycafe.member.dto.MemberUpdateDto;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface MemberRepositoryV1 {
+public interface MemberService {
 
     Member save(Member member);
 
@@ -19,6 +19,6 @@ public interface MemberRepositoryV1 {
 
     void update(Long id, MemberUpdateDto updateParam);
 
-    void delete(Long id);
+    void deleteById(Long id);
 
 }

@@ -1,4 +1,4 @@
-package bind.iot_study_cafe;
+package bind.iotstudycafe;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

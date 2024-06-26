@@ -1,20 +1,23 @@
-package bind.iot_study_cafe.member.domain;
+package bind.iotstudycafe.member.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
 
 @Data
 @Entity
+@DynamicInsert
 public class Member {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;        //seq
 
     private String memberId;
     private String memberPassword;
     private String memberName;
     private Integer age;
+
+    @Enumerated(EnumType.STRING)
     private MemberGrade memberGrade;
 
     public Member() {

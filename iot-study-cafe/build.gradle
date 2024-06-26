@@ -36,6 +36,7 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
 
+	//mysql 데이터베이스 추가
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
 	//H2 데이터베이스 추가
