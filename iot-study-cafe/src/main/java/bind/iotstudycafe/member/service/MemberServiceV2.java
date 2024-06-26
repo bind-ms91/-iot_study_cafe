@@ -2,6 +2,7 @@ package bind.iotstudycafe.member.service;
 
 import bind.iotstudycafe.member.domain.Member;
 import bind.iotstudycafe.member.domain.MemberGrade;
+import bind.iotstudycafe.member.dto.MemberSaveDto;
 import bind.iotstudycafe.member.dto.MemberSearchCond;
 import bind.iotstudycafe.member.dto.MemberUpdateDto;
 import bind.iotstudycafe.member.repository.MemberRepositoryV2;
@@ -22,7 +23,13 @@ public class MemberServiceV2 implements MemberService {
     private final MemberQueryRepository memberQueryRepository;
 
     @Override
-    public Member save(Member member) {
+    public Member save(MemberSaveDto memberSaveDto) {
+        Member member = new Member();
+        member.setMemberId(memberSaveDto.getMemberId());
+        member.setMemberName(memberSaveDto.getMemberName());
+        member.setMemberPassword(memberSaveDto.getMemberPassword());
+        member.setAge(memberSaveDto.getAge() );
+        member.setMemberGrade(memberSaveDto.getMemberGrade());
         return memberRepositoryV2.save(member);
     }
 
@@ -44,7 +51,7 @@ public class MemberServiceV2 implements MemberService {
     @Override
     public void update(Long id, MemberUpdateDto updateParam) {
         Member findMember = memberRepositoryV2.findById(id).orElseThrow();
-        findMember.setMemberGrade(MemberGrade.valueOf(updateParam.getMemberGrade()));
+        findMember.setMemberGrade(updateParam.getMemberGrade());
         findMember.setMemberPassword(updateParam.getMemberPassword());
         findMember.setMemberName(updateParam.getMemberName());
         findMember.setAge(updateParam.getAge());

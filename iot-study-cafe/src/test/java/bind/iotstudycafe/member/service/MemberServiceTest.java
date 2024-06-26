@@ -2,6 +2,7 @@ package bind.iotstudycafe.member.service;
 
 import bind.iotstudycafe.member.domain.MemberGrade;
 import bind.iotstudycafe.member.domain.Member;
+import bind.iotstudycafe.member.dto.MemberSaveDto;
 import bind.iotstudycafe.member.dto.MemberSearchCond;
 import bind.iotstudycafe.member.dto.MemberUpdateDto;
 import bind.iotstudycafe.member.repository.MemberRepositoryV1;
@@ -42,34 +43,35 @@ class MemberServiceTest {
     void save() {
 
         //given
-        Member member = new Member("ms91", "123", "조민성", 23, "OPERATOR");
+        MemberSaveDto member = new MemberSaveDto("ms91", "123", "조민성", 23, "OPERATOR");
 
         //when
-        memberService.save(member);
+        Member savedMember = memberService.save(member);
 
         //then
-        Member findMember = memberService.findById(member.getId()).get();
+        Member findMember = memberService.findById(savedMember.getId()).get();
 
         log.info("member: {}", member);
+        log.info("savedMember: {}", savedMember);
         log.info("findMember: {}", findMember);
 
-        assertThat(member).isEqualTo(findMember);
+        assertThat(savedMember).isEqualTo(findMember);
     }
 
     @Test
     void findByMemberId() {
 
         //given
-        Member member = new Member("ms91", "123", "조민성", 23, "OPERATOR");
+        MemberSaveDto member = new MemberSaveDto("ms91", "123", "조민성", 23, "OPERATOR");
 
         //when
-        memberService.save(member);
+        Member savedMember = memberService.save(member);
         Member findMember = memberService.findByMemberId(member.getMemberId()).get();
 
         //then
-        log.info("member: {}", member);
+        log.info("savedMember: {}", savedMember);
         log.info("findMember: {}", findMember);
-        assertThat(member).isEqualTo(findMember);
+        assertThat(savedMember).isEqualTo(findMember);
 
 
     }
@@ -78,9 +80,9 @@ class MemberServiceTest {
     void update() {
 
         //given
-        Member member = new Member("ms91", "123", "조민성", 23, "OPERATOR");
-        memberService.save(member);
-        Long memberId = member.getId();
+        MemberSaveDto member = new MemberSaveDto("ms91", "123", "조민성", 23, "OPERATOR");
+        Member savedMember = memberService.save(member);
+        Long memberId = savedMember.getId();
 
         //when
         MemberUpdateDto updateParam = new MemberUpdateDto("1234", "민성", 24, "OWNER");
@@ -104,35 +106,35 @@ class MemberServiceTest {
     void findMembers() {
 
         //given
-        Member member1 = new Member("ms91", "123", "조민성1", 23, "OWNER");
-        Member member2 = new Member("ms92", "1234", "조민성2", 22, "OPERATOR");
-        Member member3 = new Member("ms93", "1235", "조민성3", 21, "BASIC");
+        MemberSaveDto member1 = new MemberSaveDto("ms91", "123", "조민성1", 23, "OWNER");
+        MemberSaveDto member2 = new MemberSaveDto("ms92", "1234", "조민성2", 22, "OPERATOR");
+        MemberSaveDto member3 = new MemberSaveDto("ms93", "1235", "조민성3", 21, "BASIC");
 
-        memberService.save(member1);
-        memberService.save(member2);
-        memberService.save(member3);
+        Member savedMember1 = memberService.save(member1);
+        Member savedMember2 = memberService.save(member2);
+        Member savedMember3 = memberService.save(member3);
         //when
 
         //유저 아이디로 테스트
-        search("ms91", null, null, null, null, member1);
-        search("ms", null, null, null, null, member1, member2, member3);
-        search("", null, null, null, null, member1, member2, member3);
+        search("ms91", null, null, null, null, savedMember1);
+        search("ms", null, null, null, null, savedMember1, savedMember2, savedMember3);
+        search("", null, null, null, null, savedMember1, savedMember2, savedMember3);
 
         //유저 이름 테스트
-        search(null, "조민성1", null, null, null, member1);
-        search(null, "민성", null, null, null, member1, member2, member3);
-        search(null, "", null, null, null, member1, member2, member3);
+        search(null, "조민성1", null, null, null, savedMember1);
+        search(null, "민성", null, null, null, savedMember1, savedMember2, savedMember3);
+        search(null, "", null, null, null, savedMember1, savedMember2, savedMember3);
 
         //유저 등급 테스트
-        search(null, null, null, null, "OWNER", member1);
-        search(null, null, null, null, "OPERATOR", member2);
-        search(null, null, null, null, "BASIC", member3);
-        search(null, null, null, null, "", member1, member2, member3);
+        search(null, null, null, null, "OWNER", savedMember1);
+        search(null, null, null, null, "OPERATOR", savedMember2);
+        search(null, null, null, null, "BASIC", savedMember3);
+        search(null, null, null, null, "", savedMember1, savedMember2, savedMember3);
 
         //나이 테스트
-        search(null, null, 23, null, null, member1, member2, member3);
-        search(null, null, 23, 23, null, member1);
-        search(null, null, null, 22, null, member1, member2);
+        search(null, null, 23, null, null, savedMember1, savedMember2, savedMember3);
+        search(null, null, 23, 23, null, savedMember1);
+        search(null, null, null, 22, null, savedMember1, savedMember2);
 
         List<Member> findMembers = memberService.findAll(new MemberSearchCond());
         //then
@@ -146,9 +148,9 @@ class MemberServiceTest {
     void deleteById() {
 
         //given
-        Member member = new Member("ms91", "123", "조민성", 23, "OPERATOR");
-        memberService.save(member);
-        Long memberId = member.getId();
+        MemberSaveDto member = new MemberSaveDto("ms91", "123", "조민성", 23, "OPERATOR");
+        Member savedMember = memberService.save(member);
+        Long memberId = savedMember.getId();
         Member findMember = memberService.findById(memberId).get();
         log.info("findMember: {}", findMember);
 

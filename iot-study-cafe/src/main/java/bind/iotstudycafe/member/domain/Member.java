@@ -1,6 +1,7 @@
 package bind.iotstudycafe.member.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -31,9 +32,13 @@ public class Member {
         this.memberGrade = MemberGrade.valueOf(memberGrade);
     }
 
+    public void setMemberGrade(String memberGrade) {
+        this.memberGrade = MemberGrade.valueOf(memberGrade);
+    }
+
     // Grade를 포함하는지 확인하는 메서드 추가
-    public boolean containsGrade(MemberGrade memberGrade) {
-        return this.memberGrade == memberGrade;
+    public boolean containsGrade(String memberGrade) {
+        return this.memberGrade == MemberGrade.valueOf(memberGrade);
     }
 
 }

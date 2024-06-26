@@ -73,7 +73,7 @@ public class MemoryMemberRepository implements MemberRepositoryV1 {
                     if (ObjectUtils.isEmpty(memberGrade)) {
                         return true;
                     }
-                    return member.containsGrade(MemberGrade.valueOf(memberGrade));
+                    return member.containsGrade(memberGrade);
                 })
                 .collect(Collectors.toList());
     }
@@ -82,7 +82,7 @@ public class MemoryMemberRepository implements MemberRepositoryV1 {
     public void update(Long id, MemberUpdateDto updateParam) {
 
         Member findMember = findById(id).orElseThrow();
-        findMember.setMemberGrade(MemberGrade.valueOf(updateParam.getMemberGrade()));
+        findMember.setMemberGrade(updateParam.getMemberGrade());
         findMember.setMemberPassword(updateParam.getMemberPassword());
         findMember.setMemberName(updateParam.getMemberName());
         findMember.setAge(updateParam.getAge());

@@ -1,6 +1,8 @@
 package bind.iotstudycafe.member.service;
 
 import bind.iotstudycafe.member.domain.Member;
+import bind.iotstudycafe.member.domain.MemberGrade;
+import bind.iotstudycafe.member.dto.MemberSaveDto;
 import bind.iotstudycafe.member.repository.MemberRepositoryV1;
 import bind.iotstudycafe.member.dto.MemberSearchCond;
 import bind.iotstudycafe.member.dto.MemberUpdateDto;
@@ -18,7 +20,13 @@ public class MemberServiceV1 implements MemberService {
     private final MemberRepositoryV1 memberRepository;
 
     @Override
-    public Member save(Member member) {
+    public Member save(MemberSaveDto memberSaveDto) {
+        Member member = new Member();
+        member.setMemberId(memberSaveDto.getMemberId());
+        member.setMemberName(memberSaveDto.getMemberName());
+        member.setMemberPassword(memberSaveDto.getMemberPassword());
+        member.setAge(memberSaveDto.getAge() );
+        member.setMemberGrade(memberSaveDto.getMemberGrade());
         return memberRepository.save(member);
     }
 
