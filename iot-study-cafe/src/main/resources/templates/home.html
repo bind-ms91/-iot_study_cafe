@@ -32,17 +32,17 @@
 <div class="login-container">
     <h2 class="text-center mb-4">Login to Study Cafe</h2>
 
-    <form action="/login" method="post">
+    <form action="/login" th:object="${loginDTO}" method="post">
         <div class="mb-3">
-            <input type="text" class="form-control" name="username" th:placeholder="#{member.id}" required>
+            <input type="text" class="form-control" name="memberId" th:field="*{memberId}" th:placeholder="#{member.id}" required>
         </div>
         <div class="mb-3">
-            <input type="password" class="form-control" name="password" th:placeholder="#{member.password}" required>
+            <input type="password" class="form-control" name="memberPassword" th:placeholder="#{member.password}" required>
         </div>
         <button type="submit" class="btn btn-primary w-100" th:text="#{home.login}">Login</button>
     </form>
     <div class="text-center mt-3">
-        <a  th:onclick="|location.href='@{/sign-up}'|" class="text-primary text-decoration-none" th:text="#{home.signUp}">Sign up</a>
+        <a  th:onclick="|location.href='@{/members/add}'|" class="text-primary text-decoration-none" th:text="#{home.signUp}">Sign up</a>
     </div>
 </div>
 
