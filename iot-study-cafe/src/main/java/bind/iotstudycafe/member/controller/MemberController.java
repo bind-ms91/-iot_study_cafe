@@ -30,7 +30,5 @@ public class MemberController {
         //TODO 회원 가입 예외 처리
 
         memberService.save(memberSaveDto);
-//        return "redirect:/";
-        return "ok";
-    }
+        return "redirect:/";}
 }
