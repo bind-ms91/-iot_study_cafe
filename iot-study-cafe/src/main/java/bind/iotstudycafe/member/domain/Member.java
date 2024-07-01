@@ -32,8 +32,13 @@ public class Member {
         this.memberGrade = MemberGrade.valueOf(memberGrade);
     }
 
+
     public void setMemberGrade(String memberGrade) {
-        this.memberGrade = MemberGrade.valueOf(memberGrade);
+        if (memberGrade == null) {
+            this.memberGrade = MemberGrade.BASIC;
+        } else {
+            this.memberGrade = MemberGrade.valueOf(memberGrade);
+        }
     }
 
     // Grade를 포함하는지 확인하는 메서드 추가

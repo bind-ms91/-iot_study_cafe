@@ -1,22 +1,36 @@
 package bind.iotstudycafe.member.controller;
 
-import bind.iotstudycafe.commons.login.domain.LoginDTO;
+import bind.iotstudycafe.member.dto.MemberSaveDto;
 import bind.iotstudycafe.member.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/members")
+@RequiredArgsConstructor
 public class MemberController {
 
-    private MemberService memberService;
+    private final MemberService memberService;
 
     @GetMapping("/add")
-    public String addFrom(@ModelAttribute("member") LoginDTO member) {
+    public String addFrom(@ModelAttribute("MemberSaveDto") MemberSaveDto MemberSaveDto) {
         return "members/addMemberFrom";
     }
 
+    @ResponseBody
+    @PostMapping("/add")
+    public String save(@Validated @ModelAttribute("MemberSaveDto") MemberSaveDto memberSaveDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "members/addMemberForm";
+        }
+
+        //TODO 회원 가입 예외 처리
+
+        memberService.save(memberSaveDto);
+//        return "redirect:/";
+        return "ok";
+    }
 }

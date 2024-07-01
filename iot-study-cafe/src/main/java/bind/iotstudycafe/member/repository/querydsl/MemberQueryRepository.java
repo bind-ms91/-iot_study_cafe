@@ -32,7 +32,7 @@ public class MemberQueryRepository {
                     likeMemberId(cond.getMemberId()),
                     eqMemberGrade(cond.getMemberGrade()),
                     likeMemberName(cond.getMemberName()),
-                    betweenMemberName(cond.getMaxAge(),cond.getMinAge())
+                    betweenMemberName(cond.getMaxAge(), cond.getMinAge())
                 )
                 .fetch();
     }
