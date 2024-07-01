@@ -20,7 +20,6 @@ public class MemberController {
         return "members/addMemberFrom";
     }
 
-    @ResponseBody
     @PostMapping("/add")
     public String save(@Validated @ModelAttribute("MemberSaveDto") MemberSaveDto memberSaveDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -30,5 +29,6 @@ public class MemberController {
         //TODO 회원 가입 예외 처리
 
         memberService.save(memberSaveDto);
-        return "redirect:/";}
+        return "redirect:/";
+    }
 }
