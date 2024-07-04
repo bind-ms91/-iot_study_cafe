@@ -18,13 +18,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ExampleDomainServiceImpl implements ExampleDomainService{
 
-    @Value("${domain.iot-cafe-be.endpoint}")
-    private String iotCafeBeEndpoint;
 
     private static final String RequestMapping = "/example/";
 
     @Autowired
-    private final WebClient.Builder webClientBuilder;
+    private final WebClient iotCafeWebClient;
 
 
 //    @Override
@@ -36,11 +34,9 @@ public class ExampleDomainServiceImpl implements ExampleDomainService{
     @Override
     public Mono<ResponseEntity<ExampleDomain>> findById(Long id) {
 
-        WebClient webClient = webClientBuilder(iotCafeBeEndpoint);
-
         log.info("ExampleDomainService findById id={}",id);
 
-        return webClient.get()
+        return iotCafeWebClient.get()
                 .uri(RequestMapping+"{id}", id)
                 .retrieve()
                 .toEntity(ExampleDomain.class);
@@ -62,11 +58,11 @@ public class ExampleDomainServiceImpl implements ExampleDomainService{
 //                .bodyValue()
 //    }
 
-    private WebClient webClientBuilder(String iotCafeBeEndpoint) {
-
-        return webClientBuilder
-                .baseUrl(iotCafeBeEndpoint)
-                .build();
-    }
+//    private WebClient webClientBuilder(String iotCafeBeEndpoint) {
+//
+//        return webClientBuilder
+//                .baseUrl(iotCafeBeEndpoint)
+//                .build();
+//    }
 
 }
