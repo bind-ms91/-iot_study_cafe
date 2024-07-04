@@ -7,7 +7,9 @@ import org.hibernate.annotations.DynamicInsert;
 @Data
 public class ExampleDomain {
 
-    private String id;
+    private Long id;
+
+    private String loginId;
     private String password;
     private String name;
     private Integer age;

@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExampleDomainDto {
+public class ExampleDomainUpdateDto {
 
-    private String loginId;
     private String password;
-
+    private String name;
+    private Integer age;
 }
