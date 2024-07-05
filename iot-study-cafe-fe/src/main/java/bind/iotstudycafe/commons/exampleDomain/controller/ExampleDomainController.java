@@ -1,6 +1,5 @@
 package bind.iotstudycafe.commons.exampleDomain.controller;
 
-
 import bind.iotstudycafe.commons.exampleDomain.domain.ExampleDomain;
 import bind.iotstudycafe.commons.exampleDomain.service.ExampleDomainService;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +19,21 @@ public class ExampleDomainController {
     @Autowired
     private ExampleDomainService exampleDomainService;
 
-    @GetMapping("/{id}")
-    public Mono<ResponseEntity<ExampleDomain>> findById(@PathVariable Long id) {
+    @GetMapping("/entity/{id}")
+    public Mono<ResponseEntity<ExampleDomain>> findByIdToEntity(@PathVariable Long id) {
 
-        log.info("ExampleDomainController get id: {}", id);
+        log.info("ExampleDomainController.findByIdToEntity get id: {}", id);
 
-        return exampleDomainService.findById(id);
+        return exampleDomainService.findByIdToEntity(id);
+    }
+
+    @GetMapping("/body/{id}")
+    @ResponseBody
+    public Mono<ExampleDomain> findByIdBodyToMono(@PathVariable Long id) {
+
+        log.info("ExampleDomainController.findByIdBodyToMono get id: {}", id);
+
+        return exampleDomainService.findByIdBodyToMono(id);
     }
 
 }

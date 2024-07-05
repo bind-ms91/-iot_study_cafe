@@ -1,17 +1,15 @@
 package bind.iotstudycafe.commons.exampleDomain.service;
 
 import bind.iotstudycafe.commons.exampleDomain.domain.ExampleDomain;
-import bind.iotstudycafe.commons.exampleDomain.dto.ExampleDomainUpdateDto;
+import bind.iotstudycafe.commons.exampleDomain.dto.ExampleDomainDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-
-import java.util.List;
 
 @Slf4j
 @Service
@@ -22,19 +20,34 @@ public class ExampleDomainServiceImpl implements ExampleDomainService{
     private static final String RequestMapping = "/example/";
 
     @Autowired
+
     private final WebClient iotCafeWebClient;
 
+    @Autowired
+    @Qualifier("server1WebClient")
+    private final WebClient server1WebClient;
 
-//    @Override
-//    public ExampleDomain save(ExampleDomain exampleDomain) {
-//
-//        return null;
-//    }
 
     @Override
-    public Mono<ResponseEntity<ExampleDomain>> findById(Long id) {
+    public Mono<ResponseEntity<ExampleDomain>> save(ExampleDomainDto exampleDomainDto) {
 
-        log.info("ExampleDomainService findById id={}",id);
+        ExampleDomain exampleDomain = new ExampleDomain();
+        exampleDomain.setLoginId(exampleDomainDto.getLoginId());
+        exampleDomain.setPassword(exampleDomainDto.getPassword());
+        exampleDomain.setName(exampleDomainDto.getName());
+        exampleDomain.setAge(exampleDomainDto.getAge());
+
+        return iotCafeWebClient.post()
+                .uri(RequestMapping)
+                .bodyValue(exampleDomain)
+                .retrieve()
+                .toEntity(ExampleDomain.class);
+    }
+
+    @Override
+    public Mono<ResponseEntity<ExampleDomain>> findByIdToEntity(Long id) {
+
+        log.info("ExampleDomainService.findByIdToEntity findById id={}",id);
 
         return iotCafeWebClient.get()
                 .uri(RequestMapping+"{id}", id)
@@ -42,8 +55,18 @@ public class ExampleDomainServiceImpl implements ExampleDomainService{
                 .toEntity(ExampleDomain.class);
     }
 
+    @Override
+    public Mono<ExampleDomain> findByIdBodyToMono(Long id) {
 
-//    @Override
+        log.info("ExampleDomainService.findByIdBodyToMono findById id={}",id);
+
+        return iotCafeWebClient.get()
+                .uri(RequestMapping+"{id}", id)
+                .retrieve()
+                .bodyToMono(ExampleDomain.class);
+    }
+
+    //    @Override
 //    public List<ExampleDomain> findAll(ExampleDomain cond) {
 //        return List.of();
 //    }

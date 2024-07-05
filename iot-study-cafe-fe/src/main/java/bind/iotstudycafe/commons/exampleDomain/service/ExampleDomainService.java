@@ -1,17 +1,17 @@
 package bind.iotstudycafe.commons.exampleDomain.service;
 
 import bind.iotstudycafe.commons.exampleDomain.domain.ExampleDomain;
-import bind.iotstudycafe.commons.exampleDomain.dto.ExampleDomainUpdateDto;
+import bind.iotstudycafe.commons.exampleDomain.dto.ExampleDomainDto;
 import org.springframework.http.ResponseEntity;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 public interface ExampleDomainService {
 
-//    ExampleDomain save(ExampleDomain exampleDomain);
+    Mono<ResponseEntity<ExampleDomain>> save(ExampleDomainDto exampleDomainDto);
 
-    Mono<ResponseEntity<ExampleDomain>> findById(Long id);
+    Mono<ResponseEntity<ExampleDomain>> findByIdToEntity(Long id);
+
+    Mono<ExampleDomain> findByIdBodyToMono(Long id);
 
 //    List<ExampleDomain> findAll(ExampleDomain cond);
 //
