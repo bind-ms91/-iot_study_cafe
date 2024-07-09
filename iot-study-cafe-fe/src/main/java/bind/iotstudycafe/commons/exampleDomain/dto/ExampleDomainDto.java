@@ -11,5 +11,7 @@ public class ExampleDomainDto {
 
     private String loginId;
     private String password;
+    private String name;
+    private Integer age;
 
 }
