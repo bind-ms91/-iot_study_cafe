@@ -3,7 +3,6 @@ package bind.iotstudycafe.commons.exampleDomain.repository.memory;
 import bind.iotstudycafe.commons.exampleDomain.domain.ExampleDomain;
 import bind.iotstudycafe.commons.exampleDomain.repository.ExampleDomainRepository;
 import bind.iotstudycafe.member.domain.Member;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -29,11 +28,11 @@ public class MemoryExampleDomainRepository implements ExampleDomainRepository {
     @Override
     public Optional<ExampleDomain> findById(Long id) {
 
+
         ExampleDomain exampleDomain = store.get(id);
 
         return Optional.ofNullable(exampleDomain);
     }
-
 
 //    @Override
 //    public void update(Long id, MemberUpdateDto updateParam) {

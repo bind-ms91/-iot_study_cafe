@@ -7,6 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
 @Slf4j
 class ExampleDomainServiceTest {
@@ -15,7 +19,7 @@ class ExampleDomainServiceTest {
     private ExampleDomainService exampleDomainService;
 
     @Test
-    void findByIdToEntity() {
+    void findById() {
 
         ExampleDomain exampleDomain = new ExampleDomain("ms91", "1111", "Chominseong", 23);
 
